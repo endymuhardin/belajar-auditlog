@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <m_kategori
+        id="99"
+        kode="K-99"
+        nama="Kategori 99"
+    />
+    
+    <m_produk 
+        id="999"
+        id_kategori="99"
+        kode="P-999"
+        nama="Produk 99"
+        harga="150000.00"
+    />
+</dataset>

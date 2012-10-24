@@ -2,7 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.muhardin.endy.belajar.auditlog.domain;
+package com.muhardin.endy.belajar.auditlog.service;
+
+import com.muhardin.endy.belajar.auditlog.domain.Kategori;
+import com.muhardin.endy.belajar.auditlog.domain.Produk;
 
 /**
  *

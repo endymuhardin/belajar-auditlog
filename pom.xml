@@ -18,10 +18,14 @@
         
         <org.hibernate.version>4.1.7.Final</org.hibernate.version>
         <org.hibernate.validator.version>4.3.0.Final</org.hibernate.validator.version>
+        
+        <org.springframework.version>3.1.2.RELEASE</org.springframework.version>
+        <mysql.version>5.1.19</mysql.version>
+        
+        <dbunit.version>2.4.8</dbunit.version>
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
@@ -48,6 +52,42 @@
         </dependency>
         
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        
+        
+
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>${dbunit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${org.slf4j.version}</version>
@@ -67,6 +107,7 @@
             <version>${ch.qos.logback.version}</version>
             <scope>runtime</scope>
         </dependency>
+        
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
