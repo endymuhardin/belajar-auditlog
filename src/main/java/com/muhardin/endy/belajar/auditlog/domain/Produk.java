@@ -1,11 +1,27 @@
 package com.muhardin.endy.belajar.auditlog.domain;
 
 import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="m_produk")
 public class Produk {
+    @Id @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+    
+    @Column(nullable=false, unique=true)
     private String kode;
     private String nama;
+    
+    @ManyToOne
+    @JoinColumn(name="id_kategori", nullable=false)
     private Kategori kategori;
     private BigDecimal harga;
 
