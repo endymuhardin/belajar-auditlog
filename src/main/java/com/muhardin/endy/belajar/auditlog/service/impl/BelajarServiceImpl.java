@@ -51,6 +51,4 @@ public class BelajarServiceImpl implements BelajarService {
     public Produk cariProdukById(Integer id) {
         return (Produk) sessionFactory.getCurrentSession().get(Produk.class, id);
     }
-    
-    
 }
