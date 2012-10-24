@@ -14,7 +14,9 @@ import com.muhardin.endy.belajar.auditlog.domain.Produk;
 public interface BelajarService {
     void simpan(Kategori k);
     void hapus(Kategori k);
+    Kategori cariKategoriById(Integer id);
     
     void simpan(Produk p);
     void hapus(Produk p);
+    Produk cariProdukById(Integer id);
 }

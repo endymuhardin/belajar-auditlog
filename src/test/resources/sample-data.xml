@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
     <m_kategori
+        id="98"
+        kode="K-98"
+        nama="Kategori 98"
+    />
+    <m_kategori
         id="99"
         kode="K-99"
         nama="Kategori 99"

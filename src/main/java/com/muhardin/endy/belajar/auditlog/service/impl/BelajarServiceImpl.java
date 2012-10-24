@@ -33,6 +33,11 @@ public class BelajarServiceImpl implements BelajarService {
     }
 
     @Override
+    public Kategori cariKategoriById(Integer id) {
+        return (Kategori) sessionFactory.getCurrentSession().get(Kategori.class, id);
+    }
+
+    @Override
     public void simpan(Produk p) {
         sessionFactory.getCurrentSession().saveOrUpdate(p);
     }
@@ -40,6 +45,11 @@ public class BelajarServiceImpl implements BelajarService {
     @Override
     public void hapus(Produk p) {
         sessionFactory.getCurrentSession().delete(p);
+    }
+
+    @Override
+    public Produk cariProdukById(Integer id) {
+        return (Produk) sessionFactory.getCurrentSession().get(Produk.class, id);
     }
     
     
