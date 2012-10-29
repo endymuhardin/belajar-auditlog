@@ -54,6 +54,27 @@ public class BelajarServiceImplTest {
     }
     
     @Test
+    public void testCrudKategori() {
+        Kategori k = new Kategori();
+        k.setKode("K-999");
+        k.setNama("Kategori 999");
+
+        assertNull(k.getId());
+        belajarService.simpan(k);
+        assertNotNull(k.getId());
+        
+        k.setKode("K-999-X");
+        k.setNama("Kategori 999-X");
+        belajarService.simpan(k);
+        Kategori kx = belajarService.cariKategoriById(k.getId());
+        assertEquals("K-999-X", kx.getKode());
+        assertEquals("Kategori 999-X", kx.getNama());
+        
+        belajarService.hapus(k);
+        assertNull(belajarService.cariKategoriById(k.getId()));
+    }
+    
+    @Test
     public void testUpdateKategori() {
         Kategori k = new Kategori();
         k.setId(99);
