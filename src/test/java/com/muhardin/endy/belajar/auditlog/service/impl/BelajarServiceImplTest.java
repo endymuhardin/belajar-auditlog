@@ -138,12 +138,35 @@ public class BelajarServiceImplTest {
         int row = 1;
         for (Object[] n : hasil) {
             System.out.println("========= "+(row++)+" =========");
+            Produk p = (Produk) n[0];
             AuditLogDenganUsername au = (AuditLogDenganUsername) n[1];
             RevisionType revisionType = (RevisionType) n[2];
+
+            System.out.println("Menampilkan History untuk Produk "+p.getKode() + " - "+p.getNama());
+            Date waktuModifikasi = new Date(au.getTimestamp());
             SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss");
-            System.out.println("Tanggal Berubah : " + formatter.format(new Date(au.getTimestamp())));
-            System.out.println("Jenis Revisi : "+revisionType.name());
+            System.out.println("Waktu Berubah : " + formatter.format(waktuModifikasi));
             System.out.println("Username yang mengubah : "+au.getUsername());
+            System.out.println("Jenis Revisi : "+revisionType.name());
+        }
+    }
+
+    @Test
+    public void historyModifikasiKategori(){
+        List<Object[]> hasil = belajarService.history(Kategori.class, 103);
+        int row = 1;
+        for (Object[] n : hasil) {
+            System.out.println("========= "+(row++)+" =========");
+            Kategori p = (Kategori) n[0];
+            AuditLogDenganUsername au = (AuditLogDenganUsername) n[1];
+            RevisionType revisionType = (RevisionType) n[2];
+
+            System.out.println("Menampilkan History untuk Kategori "+p.getKode() + " - "+p.getNama());
+            Date waktuModifikasi = new Date(au.getTimestamp());
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss");
+            System.out.println("Waktu Berubah : " + formatter.format(waktuModifikasi));
+            System.out.println("Username yang mengubah : "+au.getUsername());
+            System.out.println("Jenis Revisi : "+revisionType.name());
         }
     }
 }
