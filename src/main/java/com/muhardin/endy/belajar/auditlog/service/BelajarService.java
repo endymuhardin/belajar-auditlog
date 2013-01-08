@@ -7,6 +7,8 @@ package com.muhardin.endy.belajar.auditlog.service;
 import com.muhardin.endy.belajar.auditlog.domain.Kategori;
 import com.muhardin.endy.belajar.auditlog.domain.Produk;
 
+import java.util.List;
+
 /**
  *
  * @author endy
@@ -19,4 +21,6 @@ public interface BelajarService {
     void simpan(Produk p);
     void hapus(Produk p);
     Produk cariProdukById(Integer id);
+
+    List<Object[]> history(Class entityClass, Integer id);
 }

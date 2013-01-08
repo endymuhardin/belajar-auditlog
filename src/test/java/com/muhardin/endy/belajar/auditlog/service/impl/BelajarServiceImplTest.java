@@ -4,16 +4,21 @@
  */
 package com.muhardin.endy.belajar.auditlog.service.impl;
 
+import com.muhardin.endy.belajar.auditlog.domain.AuditLogDenganUsername;
 import com.muhardin.endy.belajar.auditlog.domain.Kategori;
 import com.muhardin.endy.belajar.auditlog.domain.Produk;
 import com.muhardin.endy.belajar.auditlog.service.BelajarService;
 import java.io.File;
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.sql.DataSource;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.hibernate.envers.RevisionType;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -125,5 +130,20 @@ public class BelajarServiceImplTest {
         
         Produk px = belajarService.cariProdukById(999);
         assertEquals(new Integer(98), new Integer(px.getKategori().getId()));
+    }
+
+    @Test
+    public void historyModifikasiProduk(){
+        List<Object[]> hasil = belajarService.history(Produk.class, 999);
+        int row = 1;
+        for (Object[] n : hasil) {
+            System.out.println("========= "+(row++)+" =========");
+            AuditLogDenganUsername au = (AuditLogDenganUsername) n[1];
+            RevisionType revisionType = (RevisionType) n[2];
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss");
+            System.out.println("Tanggal Berubah : " + formatter.format(new Date(au.getTimestamp())));
+            System.out.println("Jenis Revisi : "+revisionType.name());
+            System.out.println("Username yang mengubah : "+au.getUsername());
+        }
     }
 }

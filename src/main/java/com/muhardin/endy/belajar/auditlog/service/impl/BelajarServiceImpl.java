@@ -4,13 +4,23 @@
  */
 package com.muhardin.endy.belajar.auditlog.service.impl;
 
+import com.muhardin.endy.belajar.auditlog.domain.AuditLogDenganUsername;
 import com.muhardin.endy.belajar.auditlog.domain.Kategori;
 import com.muhardin.endy.belajar.auditlog.domain.Produk;
 import com.muhardin.endy.belajar.auditlog.service.BelajarService;
 import org.hibernate.SessionFactory;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.RevisionType;
+import org.hibernate.envers.query.AuditEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -50,5 +60,15 @@ public class BelajarServiceImpl implements BelajarService {
     @Override
     public Produk cariProdukById(Integer id) {
         return (Produk) sessionFactory.getCurrentSession().get(Produk.class, id);
+    }
+
+    @Override
+    public List<Object[]> history(Class entityClass, Integer id) {
+        AuditReader reader = AuditReaderFactory.get(sessionFactory.getCurrentSession());
+        List<Object[]> hasil = reader.createQuery()
+                .forRevisionsOfEntity(entityClass, false, true)
+                .add(AuditEntity.id().eq(id))
+                .getResultList();
+        return hasil;
     }
 }
