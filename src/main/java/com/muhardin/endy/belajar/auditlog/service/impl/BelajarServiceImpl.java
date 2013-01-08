@@ -13,6 +13,8 @@ import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.RevisionType;
 import org.hibernate.envers.query.AuditEntity;
+import org.hibernate.envers.query.order.AuditOrder;
+import org.hibernate.envers.query.order.PropertyAuditOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,6 +70,7 @@ public class BelajarServiceImpl implements BelajarService {
         List<Object[]> hasil = reader.createQuery()
                 .forRevisionsOfEntity(entityClass, false, true)
                 .add(AuditEntity.id().eq(id))
+                .addOrder(AuditEntity.revisionProperty("timestamp").desc())
                 .getResultList();
         return hasil;
     }
